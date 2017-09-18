@@ -21,4 +21,5 @@ sudo apt-get install -y mongodb-org
 mongod -f mongod.conf
 
 . venv/bin/activate
+pip install --upgrade tensorflow      # for Python 2.7
 pip install -r requirments.txt
