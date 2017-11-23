@@ -1,6 +1,6 @@
 # WARNING: NOT FOR USE IN PRODUCTION AFTER REAL DATA EXISTS!!!!!!!!!!!!!!!!!!!!!!
 '''
-This script creates the database tables in the SQLite file. 
+This script creates the database tables in the SQLite file.
 Update this file as you update your database.
 '''
 import os, sys
@@ -28,8 +28,9 @@ for fname in sqlite_dbs:
   if os.path.isfile(fname):
     print ("Database {0} should not exist at this point!".format(fname))
   print ("Creating empty SQLite file: {0}.".format(fname))
+  print fname 
   open(fname, 'a').close()
-  
+
 
 def class_from_name (module_name, class_name):
   # load the module, will raise ImportError if module cannot be loaded
@@ -37,7 +38,7 @@ def class_from_name (module_name, class_name):
   # get the class, will raise AttributeError if class cannot be found
   c = getattr(module_name, class_name)
   return c
-    
+
 """This file creates the database and fills it with some dummy run it after you have made changes to the models pages."""
 def get_classes (db):
   classes = []
@@ -47,7 +48,7 @@ def get_classes (db):
     classes.append(c)
   return classes
 
-  
+
 mainDB.create_tables(get_classes('mainDB'))
 
 # Adding dummy data
@@ -63,8 +64,8 @@ users = Users(  firstName = "Matt",
                 username  = "jadudm",
                 age       = 39,
                 program   = "2"
-             ).save()           
-             
+             ).save()
+
 prog = Programs ( programName = "Computer and Information Science",
                   abbreviation = "CSC"
                 ).save()
