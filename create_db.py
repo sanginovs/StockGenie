@@ -50,40 +50,4 @@ def get_classes (db):
 
 
 mainDB.create_tables(get_classes('mainDB'))
-
-# Adding dummy data
-users = Users(  firstName = "Scott",
-                lastName  = "Heggen",
-                username  = "heggens",
-                age       = 33,
-                program   = "1"
-             ).save()
-
-users = Users(  firstName = "Matt",
-                lastName  = "Jadud",
-                username  = "jadudm",
-                age       = 39,
-                program   = "2"
-             ).save()
-
-prog = Programs ( programName = "Computer and Information Science",
-                  abbreviation = "CSC"
-                ).save()
-
-prog = Programs ( programName = "Technology and Applied Design",
-                  abbreviation = "TAD"
-                ).save()
-
-course =  Courses ( courseName = "Software Design and Implementation",
-                    coursePrefix = "CSC",
-                    courseNumber = 226,
-                    pid = 1,
-                    instructor = 1
-                  ).save()
-
-course =  Courses ( courseName = "Electricity and Electronics",
-                    coursePrefix = "TAD",
-                    courseNumber = 265,
-                    pid = 2,
-                    instructor = 2
-                  ).save()
+#Add dummy data if needed below here
