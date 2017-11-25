@@ -27,5 +27,5 @@ else:
 
 # Print statements go to your log file in production; to your console while developing
 print ("Running server at http://{0}:{1}/".format(IP, PORT))
+app.config['SECRET_KEY'] = "Your_secret_string"
 app.run(host = IP, port = PORT, debug = True, threaded = True)
-

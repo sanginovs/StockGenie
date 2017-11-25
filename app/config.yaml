@@ -20,9 +20,7 @@ models:
 mainMenu:
   - title: "Home"
     link: "/"
-  - title: "Program Display"
+  - title: "My Stocks"
     link: "readPrograms"
-  - title: "Web Form"
+  - title: "Predict"
     link: "createPrograms"
-  - title: "Relational Table"
-    link: "readCourses"
