@@ -26,24 +26,34 @@ class tableName (dbModel):
 For more information look at peewee documentation
 """
 
-class Programs (dbModel):
-  pid           = PrimaryKeyField()
-  programName   = TextField()
-  abbreviation  = TextField()
+class Stocks (dbModel):
+    sid = PrimaryKeyField()
+    companyName = TextField()
+    stockAbbr = TextField(unique=True)
+    timesSearched = IntegerField()
   
   
 class Users (dbModel):
-  uid           = PrimaryKeyField()
-  firstName     = TextField()
-  lastName      = TextField()
-  username      = TextField(unique = True)
-  age           = IntegerField(null = True)
-  program       = ForeignKeyField(Programs)     # refers to the Programs table by pid
+    uid = PrimaryKeyField()
+    firstName = TextField()
+    lastName = TextField()
+    username  = TextField(unique = True)
+    password = TextField()
+    email = TextField(unique = True)
+    timestamp = TimestampField()
   
-class Courses (dbModel):
-  cid           = PrimaryKeyField()
-  courseName    = TextField()
-  coursePrefix  = TextField()
-  courseNumber  = IntegerField(null = True)
-  pid           = ForeignKeyField(Programs)
-  instructor    = ForeignKeyField(Users)
+class Predictions (dbModel):
+    pid = PrimaryKeyField()
+    uid = ForeignKeyField(Users)
+    sid = ForeignKeyField(Stocks)
+    open = FloatField()
+    high = FloatField()
+    low = FloatField()
+    close = FloatField()
+    timestamp = TimestampField()
+
+class FavoriteStocks(dbModel):
+    fid = PrimaryKeyField()
+    uid = ForeignKeyField(Users)
+    sid = ForeignKeyField(Stocks)
+
