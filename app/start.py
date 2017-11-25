@@ -6,4 +6,3 @@ def start():
                           cfg = cfg) # Do not worry about cfg, but you need
                                      # to pass that as an argument everytime
                                      # with render_template
-                          

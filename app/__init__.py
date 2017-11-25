@@ -1,5 +1,5 @@
 '''
-This file is called by "from app import app" inside the app.py file. 
+This file is called by "from app import app" inside the app.py file.
 
 It includes all the imports to be used in the app (from allImports import *).
 It also includes all the application files that are used as "pages" in the app
@@ -13,3 +13,4 @@ from app import allImports
 #import your new python files here. It is not a part of the module until it is imported
 print("Starting application") #I don't see this print - Cody Myers
 from app import start
+from app import routes
