@@ -17,15 +17,14 @@ def signup():
 
   if request.method == "POST":
     if form.validate() == False:
-      return render_template('signup.html', form=form)
+        print "not validated"
+        return render_template('signup.html', form=form, cfg=cfg)
     else:
-      newuser = User(form.first_name.data,
-                    form.last_name.data,
-                    form.email.data,
-                    form.password.data)
-      session['email'] = newuser.email
-      newuser.save()
-      return redirect(url_for('home'))
+        newuser = Users(firstName=form.first_name.data,lastName=form.last_name.data,
+                  username=form.username.data,password=form.password.data,email=form.email.data)
+        session['email'] = newuser.email
+        newuser.save()
+        return redirect(url_for('home'))
 
   elif request.method == "GET":
     return render_template('signup.html', form=form, cfg=cfg)
