@@ -10,6 +10,7 @@ from flask import request, session
 from flask import g
 from flask import url_for
 
+import bcrypt
 import pprint
 from app import models
 from app import logtool
