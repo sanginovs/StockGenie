@@ -16,6 +16,7 @@ models:
     - Users
     - Predictions
     - FavoriteStocks
+    - StockData
 # this makes the navigation bar
 mainMenu:
   - title: "Home"

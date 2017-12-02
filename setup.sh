@@ -1,7 +1,7 @@
 # This file sets up the virtual environment.
 # Run "source setup.sh" each time you want to run the app.
+# This file is all the requirements needed to run the app
 
-mkdir -p data
 
 if [ ! -d venv ]
 then
@@ -11,6 +11,4 @@ fi
 . venv/bin/activate
 
 pip install Flask
-pip install peewee
-pip install pyyaml
-pip install bcrypt
+pip install sqlalchemy

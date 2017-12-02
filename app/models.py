@@ -57,3 +57,12 @@ class FavoriteStocks(dbModel):
     uid = ForeignKeyField(Users)
     sid = ForeignKeyField(Stocks)
 
+class StockData(dbModel):
+    sdid = PrimaryKeyField()
+    symbol = TextField()
+    date = DateField()
+    open = FloatField()
+    high = FloatField()
+    close = FloatField()
+    low = FloatField()
+
