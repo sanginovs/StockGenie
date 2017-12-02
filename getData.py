@@ -11,7 +11,7 @@ low = '3. low'
 high = '2. high'
 symbol = '2. Symbol'
 
-chosenStocks = ['APPL', 'GOOGL']
+chosenStocks = ['AAPL', 'GOOGL','MSFT','TSLA','NFLX','DIS']
 
 #This is the api key we will be using
 apiKey = "NOKRTCHWT6DAEHUY"
@@ -29,18 +29,22 @@ def connect(stockName):
     return data
 
 for stock in chosenStocks:
+
     print("Collecting data for " + stock)
 
     success = False
     data = {'Error Message':'Error'}
-    while not success or data.keys()[0] == 'Error Message':
+    while (success==False) or (data.keys()[0] == 'Error Message'):
+        print(data.keys()[0])
+        print("Running")
         success = False
         try:
             data = connect(stock)
+            
             success = True
         except:
             print('Could not Connect. Trying again')
-            pass
+
     print('Connection passed')
     dates = data[time].keys()
     print('Starting to Add to DB')
