@@ -28,13 +28,21 @@ X = data[:length-1]
 Y = data[1:,3:]
 
 model = Sequential()
-model.add(Dense(12, input_shape=(4,), activation='linear'))
-model.add(Dense(8, activation='linear'))
+model.add(Dense(30, input_shape=(4,), activation='linear'))
+model.add(Dense(30, activation='linear'))
+model.add(Dense(30, activation='linear'))
+model.add(Dense(30, activation='linear'))
+model.add(Dense(30, activation='linear'))
+model.add(Dense(30, activation='linear'))
 model.add(Dense(1, activation='linear'))
 
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
 
-model.fit(X, Y, epochs=150, batch_size=10)
+model.fit(X, Y, epochs=500, batch_size=10)
 
 scores = model.evaluate(X, Y)
 print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
+
+model.save('trained_model.h5')
+
+
