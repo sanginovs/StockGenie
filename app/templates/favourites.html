@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+
+{% include "navigation.html" %}
+
+{%endblock%}
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+<div>
+
+<h3>This is a list of your favourite stocks.</h3>
+
+</div>
+
+
+<table id="myTable" class="display" cellspacing="0" width="100%">
+   <thead>
+      <tr>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+   </thead>
+   <tfoot>
+      <tr>
+         <th>Name</th>
+         <th>Start Date</th>
+         <th>End Date</th>
+      </tr>
+   </tfoot>
+   <tbody>
+  {% if allstocks%}
+      {%for record in allstocks%}
+      <tr>
+         <td>{{record.sname}}</td>
+         <td>{{record.Field4}}</td>
+         <td>{{record.Field5}}</td>
+      </tr>
+      {%endfor%}
+  {%endif%}
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+<style>
+
+h3{
+  font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: #006600;
+      letter-spacing: 1.4px;
+
+      text-transform: uppercase;
+      text-align: center;
+
+
+
+
+}
+</style>
+
+<script>
+
+$(document).ready(function(){
+    $('#myTable').DataTable();
+});
+</script>
+
+{%endblock%}

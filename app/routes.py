@@ -13,14 +13,12 @@ def start():
                           cfg = cfg)
 
 
-@app.route("/addstock/<name>/<username>")
-def addstock(name, username):
+@app.route("/addstock/<name>/<username>/<startd>/<until>")
+def addstock(name, username, startd, until):
     user=Users.get(Users.username==username)
-    print "we are here"
     print user.lastName
-    #favourite=FavoriteStocks(uid=user.uid,                sname=name)
-
-    #favourite.save()
+    favourite=FavoriteStocks(uid=user.uid,sname=name, Field4=startd,Field5=until)
+    favourite.save()
     returnlist=["works", "hello"]
     return json.dumps(returnlist)
 
@@ -90,7 +88,11 @@ def home():
 
 @app.route("/favorites", methods=["GET"])
 def favourites():
-    return "Hello World"
+    allstocks=[]
+    for record in FavoriteStocks.select():
+            allstocks.append(record)
+
+    return render_template("favourites.html", cfg=cfg, allstocks=allstocks)
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():

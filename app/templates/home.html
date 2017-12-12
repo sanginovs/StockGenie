@@ -73,7 +73,7 @@
 </div>
 
 <div class="container-fluid">
-<h4> | StockName: <span class="word">{{stockname}}</span> | From: {{start}} To: {{final}} | </h4>
+<h4> | StockName: <span class="word">{{stockname}}</span> | From: <span class="from">{{start}}</span> To: <span class="until">{{final}}</span> | </h4>
   <div class="col-md-1 pull-right">
 
   <button onclick="addStocks()" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -139,7 +139,7 @@ h4{
       font-weight: bold;
       color: #006600;
       letter-spacing: 1.4px;
-
+      text-align: center;
       text-transform: uppercase;
 
 
@@ -157,10 +157,12 @@ function popsup(response){
 function addStocks(obj){
    var stockname= $('.word').text();
    var username= $(".username").text();
+   var from = $(".from").text()
+   var until= $(".until").text()
    console.log(stockname);
    console.log(username);
    $.ajax({
-            url: '/addstock/'+stockname+"/"+username,
+            url: '/addstock/'+stockname+"/"+username+"/"+from+"/"+until,
             dataType: 'json',
             success: function(response){
       				popsup(response);

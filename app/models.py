@@ -56,6 +56,8 @@ class FavoriteStocks(dbModel):
     fid = PrimaryKeyField()
     uid = ForeignKeyField(Users)
     sname = TextField()
+    Field4=TextField()
+    Field5=TextField()
 
 class StockData(dbModel):
     sdid = PrimaryKeyField()
