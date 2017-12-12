@@ -1,5 +1,10 @@
 from allImports import *
 from flask import session
+import time
+import operator
+
+
+
 
 
 @app.route("/", methods = ["GET"])
@@ -7,9 +12,69 @@ def start():
   return render_template("start.html",
                           cfg = cfg)
 
-@app.route("/home", methods=["GET"])
+
+
+
+@app.route("/home", methods=["GET", "POST"])
 def home():
-    return render_template("home.html", cfg=cfg)
+    if request.method == 'POST':
+        text = request.form['text']
+        stockname=text
+        print stockname
+        values = []
+        labels = []
+        newdata=[]
+        for record in StockData.select().where(StockData.symbol==stockname):
+                new_dict={}
+                new_dict["date"]=record.date.strftime("%Y-%m-%d")
+                new_dict["price"]=record.close
+                newdata.append(new_dict)
+        newdata.sort(key=operator.itemgetter('date'))
+        fake_val=[]
+        fake_lab=[]
+        for i in newdata:
+            fake_val.append(i["price"])
+            fake_lab.append(i["date"])
+        for i in range(len(fake_val)-60, len(fake_val)-1):
+            values.append(fake_val[i])
+        for i in range(len(fake_lab)-60, len(fake_lab)-1):
+            labels.append(fake_lab[i])
+
+        max_data=values[len(values)-1]
+        print values
+        print labels
+        start=labels[0]
+        final=labels[len(labels)-1]
+
+        return render_template("home.html", cfg=cfg, values=values, labels=labels, max_data=max_data, start=start, final=final, stockname=stockname)
+
+    else:
+        stockname="AAPL"
+        values = []
+        labels = []
+        newdata=[]
+        for record in StockData.select().where(StockData.symbol=="AAPL"):
+                new_dict={}
+                new_dict["date"]=record.date.strftime("%Y-%m-%d")
+                new_dict["price"]=record.close
+                newdata.append(new_dict)
+        newdata.sort(key=operator.itemgetter('date'))
+        fake_val=[]
+        fake_lab=[]
+        for i in newdata:
+            fake_val.append(i["price"])
+            fake_lab.append(i["date"])
+        for i in range(len(fake_val)-60, len(fake_val)-1):
+            values.append(fake_val[i])
+        for i in range(len(fake_lab)-60, len(fake_lab)-1):
+            labels.append(fake_lab[i])
+
+        max_data=values[len(values)-1]
+        print values
+        print labels
+        start=labels[0]
+        final=labels[len(labels)-1]
+        return render_template("home.html", cfg=cfg, values=values, labels=labels, max_data=max_data, start=start, final=final, stockname=stockname)
 
 
 @app.route("/signup", methods=["GET", "POST"])
