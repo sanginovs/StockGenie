@@ -12,6 +12,32 @@
 
  <div class="row">
 
+   <div id="myModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+
+       <!-- Modal content-->
+       <div class="modal-content">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           <h3 class="modal-title">Success</h3>
+         </div>
+         <div class="modal-body">
+           <p> <b>Hi {{session.username}}. {{stockname}} stock was added to your Favourites.</b></p>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+
+     </div>
+   </div>
+
+
+
+
+
+
+<p><span class="username" style="display:none">{{session.username}}</span> </p>
        <!-- Post Content Column -->
   <div class="col-lg-10">
 		<h2 style="text-align:center"></h2>
@@ -30,9 +56,8 @@
                             </div>
           </div>
             </form>
-
-<h4> | StockName: {{stockname}} | From: {{start}} To: {{final}}  </h4>
 </div>
+
 
 
 
@@ -46,9 +71,19 @@
 
 </div>
 </div>
-<div class="container-fluid">
 
-<canvas id="chart" width="1200" height="600">"Hello"</canvas>
+<div class="container-fluid">
+<h4> | StockName: <span class="word">{{stockname}}</span> | From: {{start}} To: {{final}} | </h4>
+  <div class="col-md-1 pull-right">
+
+  <button onclick="addStocks()" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      <span class=" glyphicon glyphicon-plus pull-right"><b>Add</b></span>
+
+  </button>
+</div>
+<div class="col-md-12">
+<canvas id="chart" width="1200" height="600"></canvas>
+</div>
 </div>
 
 
@@ -104,7 +139,7 @@ h4{
       font-weight: bold;
       color: #006600;
       letter-spacing: 1.4px;
-      border-bottom: solid 1px #006600;
+
       text-transform: uppercase;
 
 
@@ -112,6 +147,35 @@ h4{
 }
 
 </style>
+<script>
+
+function popsup(response){
+  console.log("Works.")
+}
+
+
+function addStocks(obj){
+   var stockname= $('.word').text();
+   var username= $(".username").text();
+   console.log(stockname);
+   console.log(username);
+   $.ajax({
+            url: '/addstock/'+stockname+"/"+username,
+            dataType: 'json',
+            success: function(response){
+      				popsup(response);
+
+      			},
+      			error: function(error){
+              console.log("Error");
+      				console.log(error);
+      			}
+            });
+   }
+
+</script>
+
+
 
 
 {% include "chart.html" %}

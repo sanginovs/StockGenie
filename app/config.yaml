@@ -20,8 +20,8 @@ models:
 # this makes the navigation bar
 mainMenu:
   - title: "Home"
-    link: "/"
-  - title: "My Stocks"
-    link: "readPrograms"
+    link: "/home"
+  - title: "My Favourites"
+    link: "/favorites"
   - title: "Predict"
-    link: "createPrograms"
+    link: "/predict"

@@ -2,7 +2,7 @@ from allImports import *
 from flask import session
 import time
 import operator
-
+import json
 
 
 
@@ -13,6 +13,16 @@ def start():
                           cfg = cfg)
 
 
+@app.route("/addstock/<name>/<username>")
+def addstock(name, username):
+    user=Users.get(Users.username==username)
+    print "we are here"
+    print user.lastName
+    #favourite=FavoriteStocks(uid=user.uid,                sname=name)
+
+    #favourite.save()
+    returnlist=["works", "hello"]
+    return json.dumps(returnlist)
 
 
 @app.route("/home", methods=["GET", "POST"])
@@ -76,6 +86,11 @@ def home():
         final=labels[len(labels)-1]
         return render_template("home.html", cfg=cfg, values=values, labels=labels, max_data=max_data, start=start, final=final, stockname=stockname)
 
+
+
+@app.route("/favorites", methods=["GET"])
+def favourites():
+    return "Hello World"
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():

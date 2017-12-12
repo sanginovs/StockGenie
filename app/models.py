@@ -9,11 +9,11 @@ mainDB    = SqliteDatabase(cfg['databases']['dev'])
 
 # Creates the class that will be used by Peewee to store the database
 class dbModel (Model):
-  class Meta: 
+  class Meta:
     database = mainDB
-    
+
 """
-When adding new tables to the DB, add a new class here 
+When adding new tables to the DB, add a new class here
 Also, you must add the table to the config.yaml file
 
 Example of creating a Table
@@ -31,8 +31,8 @@ class Stocks (dbModel):
     companyName = TextField()
     stockAbbr = TextField(unique=True)
     timesSearched = IntegerField()
-  
-  
+
+
 class Users (dbModel):
     uid = PrimaryKeyField()
     firstName = TextField()
@@ -41,7 +41,7 @@ class Users (dbModel):
     password = TextField()
     email = TextField(unique = True)
     timestamp = TimestampField()
-  
+
 class Predictions (dbModel):
     pid = PrimaryKeyField()
     uid = ForeignKeyField(Users)
@@ -55,7 +55,7 @@ class Predictions (dbModel):
 class FavoriteStocks(dbModel):
     fid = PrimaryKeyField()
     uid = ForeignKeyField(Users)
-    sid = ForeignKeyField(Stocks)
+    sname = TextField()
 
 class StockData(dbModel):
     sdid = PrimaryKeyField()
@@ -65,4 +65,3 @@ class StockData(dbModel):
     high = FloatField()
     close = FloatField()
     low = FloatField()
-
